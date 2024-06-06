@@ -5,8 +5,19 @@ import java.util.List;
 
 public class Medalha
 {
-
+    private int id;
     private String tipo;
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public Medalha setId(int id)
+    {
+        this.id = id;
+        return this;
+    }
     
     public String getTipo()
     {

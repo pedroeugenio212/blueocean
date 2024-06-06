@@ -75,7 +75,10 @@ public class Endereco
         this.estado = estado;
         return this;
     }
-    
-    
-    
+
+    @Override
+    public String toString()
+    {
+        return logradouro + "," + bairro + "," + cidade + "," + estado;
+    }
 }

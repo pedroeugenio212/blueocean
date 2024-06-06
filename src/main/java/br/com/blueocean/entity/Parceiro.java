@@ -74,10 +74,10 @@ public class Parceiro
         String listaParceiros = "";
         for (Parceiro parceiro : parceiros)
         {
-            listaParceiros += "\n" + "Nome: " + parceiro.getNome() + "\n";
-            listaParceiros += "Endereço: " + parceiro.getEndereco().getLogradouro() + " Bairro: " + parceiro.getEndereco().getBairro() + " Cidade: " + parceiro.getEndereco().getCidade() + "\n";
-            listaParceiros += "Email de contato: " + parceiro.getEmail() + "\n";
-            listaParceiros += "CNPJ: " + parceiro.getCnpj() + "\n";
+            listaParceiros += "\nNome: " + parceiro.getNome() + 
+                    "\nEndereço: " + parceiro.getEndereco() +
+                    "\nEmail de contato: " + parceiro.getEmail() +
+                    "\nCNPJ: " + parceiro.getCnpj() + "\n";
         }
         return listaParceiros;
     }

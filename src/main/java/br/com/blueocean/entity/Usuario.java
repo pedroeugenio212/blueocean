@@ -71,11 +71,11 @@ public class Usuario
         return this;
     }
 
-    public String getEndereco()
+    public Endereco getEndereco()
     {
         if (endereco == null)
 			endereco = new Endereco();
-        return endereco.getLogradouro() + " Bairro: " + endereco.getBairro() + " Cidade: " + endereco.getCidade();
+        return endereco;
     }
 
     public Usuario setEndereco(Endereco endereco)
@@ -128,7 +128,7 @@ public class Usuario
         String listaMedalha = "";
         for(Medalha medalha : medalhas)
         {
-            listaMedalha += medalha.getTipo() + " ";
+            listaMedalha += "(" + medalha.getTipo() + ")";
         }
         return listaMedalha;
     }

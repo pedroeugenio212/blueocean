@@ -9,6 +9,7 @@ import br.com.blueocean.entity.Sacola;
 import br.com.blueocean.entity.TransacaoCashback;
 import br.com.blueocean.entity.Usuario;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,21 +40,21 @@ public class Utilitario
         enderecoUsuario
             .setId(1)
             .setCep(41516140)
-            .setEstado("São Paulo")
+            .setEstado("SP")
             .setCidade("São Paulo")
             .setBairro("Bela Vista")
             .setLogradouro("Avenida Paulista");
         enderecoParceiro1 
             .setId(2)
             .setCep(39839486)
-            .setEstado("Bahia")
+            .setEstado("BA")
             .setCidade("Salvador")
             .setBairro("Itaigara")
             .setLogradouro("Avenida Antônio Carlos Magalhães");
         enderecoParceiro2 
             .setId(2)
             .setCep(58694752)
-            .setEstado("Ceará")
+            .setEstado("CE")
             .setCidade("Fortaleza")
             .setBairro("Benfica")
             .setLogradouro("Avenida Domingos Olímpio");
@@ -180,8 +181,8 @@ public class Utilitario
         System.out.println("-------------------------Detalhes do escaneamento-------------------------");
         System.out.println("Nota fiscal escaneada: " + notasFiscais.get(0).getId());
         System.out.println("Código da sua sacola: " + usuario.getSacolas().get(0).getId());
-        System.out.println("Valor da sua compra: R$ " + notasFiscais.get(0).getValorCompra());
-        System.out.println("Valor a ser recebido em cashback: R$ " + notaFiscal.cashbackCompra(notasFiscais.get(0)));
+        System.out.println("Valor da sua compra: R$ " + String.format("%.2f", notasFiscais.get(0).getValorCompra()));
+        System.out.println("Valor a ser recebido em cashback: R$ " + String.format("%.2f", notaFiscal.cashbackCompra(notasFiscais.get(0))));
     
     }
     
@@ -189,7 +190,7 @@ public class Utilitario
     {
         System.out.println("---------------------- Saque do cashback ----------------------");
         System.out.println("Aqui você consegue sacar o valor recebido em cashback");
-        System.out.println("Saldo disponível: R$ " + notaFiscal.totalCashback(notasFiscais));
+        System.out.println("Saldo disponível: R$ " + String.format("%.2f", notaFiscal.totalCashback(notasFiscais)));
         System.out.println("Seus dados bancários: ");
         System.out.println("Conta: " + usuario.getConta().getNumeroConta());
         System.out.println("Agência: " + usuario.getConta().getNumeroAgencia());
@@ -204,13 +205,17 @@ public class Utilitario
                            Novo por aqui, ou com dúvidas? Aqui é o seu lugar!
                            
                                 Como começar?
-                           Procure um dos nossos parceiros mais próximos a você na aba “Parceiros”. Depois, basta fazer suas compras normalmente no estabelecimento. Após pagar a compra, escaneie o qrcode da nota fiscal e pronto! A gente cuida de todo o resto.
+                           Procure um dos nossos parceiros mais próximos a você na aba “Parceiros”. 
+                           Depois, basta fazer suas compras normalmente no estabelecimento. 
+                           Após pagar a compra, escaneie o qrcode da nota fiscal e pronto! A gente cuida de todo o resto.
                            
                                 Em quanto tempo recebo o cashback?
                            Você poderá ver o valor de cashback recebido em uma compra instantaneamente no app da Blue Ocean.
                            
                                 Onde posso comprar uma ecobag Blue Ocean?
-                           Você pode comprar uma das nossas sacolas em qualquer um dos nossos parceiros. Caso elas não estejam visíveis, pergunte no caixa. Temos certeza que nossos parceiros ficarão felizes em ajudá-lo.
+                           Você pode comprar uma das nossas sacolas em qualquer um dos nossos parceiros. 
+                           Caso elas não estejam visíveis, pergunte no caixa. 
+                           Temos certeza que nossos parceiros ficarão felizes em ajudá-lo.
                            """);
     
     }
@@ -224,11 +229,27 @@ public class Utilitario
     {
         System.out.println("------------------------- Configurações -------------------------");
         System.out.println("Aqui você consegue ver todas as informačões relacionadas à sua conta:");
-        System.out.println("\n" + "Minhas informações pessoais: " + "\n" + "Nome: " + usuario.getNome() + "\n" + "Endereco: " + usuario.getEndereco() + "\n" + "Email: " + usuario.getEmail() + "\n" + "Cpf: " + usuario.getCpf());
-        System.out.println("\n" + "Meus parceiros favoritos: " + "\n" + "Nome do parceiro: " + usuario.getParceiros().get(0).getNome() + "\n" + "Endereco do parceiro: " + usuario.getParceiros().get(0).getEndereco().getLogradouro()  + " Bairro: " + usuario.getParceiros().get(0).getEndereco().getBairro() + " Cidade: " + usuario.getParceiros().get(0).getEndereco().getCidade() + "\n"+ "Email do parceiro: " + usuario.getParceiros().get(0).getEmail());
-        System.out.println("\n" + "Meus recibos: " + "\n" + "Id da transação: " + transacaoCashback.getId() + "\n" + "Data efetuada: " + transacaoCashback.getData() + "\n" + "Total retirado : " + transacaoCashback.getValorTransacao() + "\n" + "Detalhes da conta bancária: " + "\n" + "Numero da conta: " + usuario.getConta().getNumeroConta() + "\n" + "Numero da agéncia: " + usuario.getConta().getNumeroAgencia() + "\n" + "Código do Banco: " + usuario.getConta().getNumeroBanco() + "\n" + "Nome do banco: " + usuario.getConta().getNomeBanco());
-        System.out.println("\n" + "Minhas sacolas: " + "\n" + "Id: " + usuario.getSacolas().get(0).getId() + "\n" + "Reutilizada " + usuario.getSacolas().get(0).getQntReutilizacao() + " vezes" + "\n" + "Id: " + usuario.getSacolas().get(1).getId() + "\n" + "Reutilizada " + usuario.getSacolas().get(1).getQntReutilizacao() + " vezes" + "\n" + "Total de reutilizações: " + usuario.getSacolas().get(0).totalReutilizacoes(usuario.getSacolas()));
-        System.out.println("\n" + "Minhas medalhas: " + usuario.listarMedalhas(medalha.totalMedalhas(sacola.totalReutilizacoes(sacolas))));
-        System.out.println("\n" + "Meus escaneamentos: " + usuario.getSacolas().get(0).getNotaFiscal() + usuario.getSacolas().get(1).getNotaFiscal());
+        System.out.println("\nMinhas informações pessoais: \nNome: " + usuario.getNome() +
+                "\nEndereco: " + usuario.getEndereco() +
+                "\nEmail: " + usuario.getEmail() +
+                "\nCpf: " + usuario.getCpf());
+        System.out.println("\nMeus parceiros favoritos: \nNome do parceiro: " + usuario.getParceiros().get(0).getNome() +
+                "\nEndereco do parceiro: " + usuario.getParceiros().get(0).getEndereco() +
+                "\nEmail do parceiro: " + usuario.getParceiros().get(0).getEmail());
+        System.out.println("\nMeus recibos: \nId da transação: " + transacaoCashback.getId() +
+                "\nData efetuada: " + transacaoCashback.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                "\nTotal retirado : R$ " + String.format("%.2f", transacaoCashback.getValorTransacao()) +
+                "\nDetalhes da conta bancária: " +
+                "\nNumero da conta: " + usuario.getConta().getNumeroConta() +
+                "\nNumero da agéncia: " + usuario.getConta().getNumeroAgencia() +
+                "\nCódigo do Banco: " + usuario.getConta().getNumeroBanco() +
+                "\nNome do banco: " + usuario.getConta().getNomeBanco());
+        System.out.println("\nMinhas sacolas: \nId: " + usuario.getSacolas().get(0).getId() +
+                "\nReutilizada " + usuario.getSacolas().get(0).getQntReutilizacao() + " vezes" +
+                "\nId: " + usuario.getSacolas().get(1).getId() +
+                "\nReutilizada " + usuario.getSacolas().get(1).getQntReutilizacao() + " vezes" +
+                "\nTotal de reutilizações: " + usuario.getSacolas().get(0).totalReutilizacoes(usuario.getSacolas()));
+        System.out.println("\nMinhas medalhas: " + usuario.listarMedalhas(medalha.totalMedalhas(sacola.totalReutilizacoes(sacolas))));
+        System.out.println("\nMeus escaneamentos: " + usuario.getSacolas().get(0).getNotaFiscal() + usuario.getSacolas().get(1).getNotaFiscal());
     }
 }

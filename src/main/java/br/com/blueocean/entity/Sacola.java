@@ -1,5 +1,7 @@
 package br.com.blueocean.entity;
 
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +36,18 @@ public class Sacola
 
     public String getNotaFiscal()
     {
+        DecimalFormat df = new DecimalFormat("#0.00");
         String todasAsNotasFiscais = "";
         if(notasFiscais == null)
             notasFiscais = new ArrayList<>();
 
         for (NotaFiscal notaFiscal : notasFiscais)
         {
-            todasAsNotasFiscais += "\n" + "Id da nota fiscal: " + notaFiscal.getId();
-            todasAsNotasFiscais += "\n" +  "Sacola vinculada: " + getId();
-            todasAsNotasFiscais += "\n" +  "Data: " + notaFiscal.getData();
-            todasAsNotasFiscais += "\n" +  "Valor da compra: " + notaFiscal.getValorCompra();
-            todasAsNotasFiscais += "\n" +  "Cashback recebido: " + notaFiscal.cashbackCompra(notaFiscal) + "\n";
+            todasAsNotasFiscais += "\nId da nota fiscal: " + notaFiscal.getId() +
+                    "\nSacola vinculada: " + getId() +
+                    "\nData: " + notaFiscal.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                    "\nValor da compra: R$ " + String.format("%.2f", notaFiscal.getValorCompra()) +
+                    "\nCashback recebido: R$ " + String.format("%.2f", notaFiscal.cashbackCompra(notaFiscal)) + "\n";
         }
         return todasAsNotasFiscais;
     }
