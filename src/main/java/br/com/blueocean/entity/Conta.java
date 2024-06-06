@@ -11,15 +11,6 @@ public class Conta
     
     public Conta(){}
 
-    public Conta(int id, int numeroConta, int numeroAgencia, int numeroBanco, String nomeBanco)
-    {
-        this.id = id;
-        this.numeroConta = numeroConta;
-        this.numeroAgencia = numeroAgencia;
-        this.numeroBanco = numeroBanco;
-        this.nomeBanco = nomeBanco;
-    }
-    
     public int getId()
     {
         return id;

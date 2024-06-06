@@ -7,7 +7,6 @@ import java.util.List;
 public class NotaFiscal
 {
     private int id;
-    private Usuario usuario;
     private Sacola sacola;
     private Parceiro parceiro;
     private float valorCompra;
@@ -22,17 +21,6 @@ public class NotaFiscal
     public NotaFiscal setId(int id)
     {
         this.id = id;
-        return this;
-    }
-
-    public Usuario getUsuario()
-    {
-        return usuario;
-    }
-
-    public NotaFiscal setUsuario(Usuario usuario)
-    {
-        this.usuario = usuario;
         return this;
     }
 

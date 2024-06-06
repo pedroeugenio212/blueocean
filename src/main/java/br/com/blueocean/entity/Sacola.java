@@ -8,7 +8,6 @@ public class Sacola
 {
     private int id;
     private int qntReutilizacao;
-    private Usuario usuario;
     private List<NotaFiscal> notasFiscais;
     
     public int getId()
@@ -30,19 +29,6 @@ public class Sacola
     public Sacola setQntReutilizacao(int qntReutilizacao)
     {
         this.qntReutilizacao = qntReutilizacao;
-        return this;
-    }
-
-    public Usuario getUsuario()
-    {
-        if(usuario == null)
-            usuario = new Usuario();
-        return usuario;
-    }
-
-    public Sacola setUsuario(Usuario usuario)
-    {
-        this.usuario = usuario;
         return this;
     }
 

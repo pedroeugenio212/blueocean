@@ -15,7 +15,6 @@ public class Usuario
     private Conta conta;
     private List<Sacola> sacolas;
     private List<Parceiro> parceirosFavoritos;
-    private List<Medalha> medalhas;
     
     public int getCpf()
     {
@@ -124,19 +123,6 @@ public class Usuario
         return this;
     }
     
-    public List<Medalha> getMedalhas()
-    {
-        if (medalhas == null)
-			medalhas = new ArrayList<>();
-        return medalhas;
-    }
-
-    public Usuario setMedalhas(List<Medalha> medalhas)
-    {
-        this.medalhas = medalhas;
-        return this;
-    }
-    
     public String listarMedalhas(List<Medalha> medalhas)
     {
         String listaMedalha = "";
@@ -145,15 +131,5 @@ public class Usuario
             listaMedalha += medalha.getTipo() + " ";
         }
         return listaMedalha;
-    }
-    
-    public String listarParceirosFavoritos(List<Parceiro> parceirosFavoritos)
-    {
-        String listarParceirosFavoritos = "";
-        for (Parceiro parceiro : parceirosFavoritos)
-        {
-            listarParceirosFavoritos += parceiro.getNome() + "\n";
-        }
-        return listarParceirosFavoritos;
     }
 }

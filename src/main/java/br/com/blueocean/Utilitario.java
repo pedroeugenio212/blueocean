@@ -105,7 +105,6 @@ public class Utilitario
             .setValorCompra((float) 500.00)
             .setData(LocalDate.of(2024, 6, 3))
             .setSacola(sacolas.get(0))
-            .setUsuario(usuario)
             .setParceiro(parceiros.get(0))
             .setTrasacaoCashback(transacaoCashback));
         notasFiscais.add(new NotaFiscal()
@@ -113,7 +112,6 @@ public class Utilitario
             .setValorCompra((float) 1500.00)
             .setData(LocalDate.of(2024, 5, 20))
             .setSacola(sacolas.get(1))
-            .setUsuario(usuario)
             .setParceiro(parceiros.get(1))
             .setTrasacaoCashback(transacaoCashback));
         notasFiscais.add(new NotaFiscal()
@@ -121,7 +119,6 @@ public class Utilitario
             .setValorCompra((float) 300.00)
             .setData(LocalDate.of(2024, 6, 1))
             .setSacola(sacolas.get(0))
-            .setUsuario(usuario)
             .setParceiro(parceiros.get(0))
             .setTrasacaoCashback(transacaoCashback));
         notasFiscais2.add(new NotaFiscal()
@@ -129,7 +126,6 @@ public class Utilitario
                 .setValorCompra((float) 500.00)
                 .setData(LocalDate.of(2024, 6, 1))
                 .setSacola(sacolas.get(1))
-                .setUsuario(usuario)
                 .setParceiro(parceiros.get(1))
                 .setTrasacaoCashback(transacaoCashback));
         
@@ -228,8 +224,8 @@ public class Utilitario
     {
         System.out.println("------------------------- Configurações -------------------------");
         System.out.println("Aqui você consegue ver todas as informačões relacionadas à sua conta:");
-        System.out.println("\n" + "Suas informações pessoais: " + "\n" + "Nome: " + usuario.getNome() + "\n" + "Endereco: " + usuario.getEndereco() + "\n" + "Email: " + usuario.getEmail() + "\n" + "Cpf: " + usuario.getCpf());
-        System.out.println("\n" + "Seus parceiros favoritos: " + "\n" + "Nome do parceiro: " + usuario.getParceiros().get(0).getNome() + "\n" + "Endereco do parceiro: " + usuario.getParceiros().get(0).getEndereco().getLogradouro()  + " Bairro: " + usuario.getParceiros().get(0).getEndereco().getBairro() + " Cidade: " + usuario.getParceiros().get(0).getEndereco().getCidade() + "\n"+ "Email do parceiro: " + usuario.getParceiros().get(0).getEmail());
+        System.out.println("\n" + "Minhas informações pessoais: " + "\n" + "Nome: " + usuario.getNome() + "\n" + "Endereco: " + usuario.getEndereco() + "\n" + "Email: " + usuario.getEmail() + "\n" + "Cpf: " + usuario.getCpf());
+        System.out.println("\n" + "Meus parceiros favoritos: " + "\n" + "Nome do parceiro: " + usuario.getParceiros().get(0).getNome() + "\n" + "Endereco do parceiro: " + usuario.getParceiros().get(0).getEndereco().getLogradouro()  + " Bairro: " + usuario.getParceiros().get(0).getEndereco().getBairro() + " Cidade: " + usuario.getParceiros().get(0).getEndereco().getCidade() + "\n"+ "Email do parceiro: " + usuario.getParceiros().get(0).getEmail());
         System.out.println("\n" + "Meus recibos: " + "\n" + "Id da transação: " + transacaoCashback.getId() + "\n" + "Data efetuada: " + transacaoCashback.getData() + "\n" + "Total retirado : " + transacaoCashback.getValorTransacao() + "\n" + "Detalhes da conta bancária: " + "\n" + "Numero da conta: " + usuario.getConta().getNumeroConta() + "\n" + "Numero da agéncia: " + usuario.getConta().getNumeroAgencia() + "\n" + "Código do Banco: " + usuario.getConta().getNumeroBanco() + "\n" + "Nome do banco: " + usuario.getConta().getNomeBanco());
         System.out.println("\n" + "Minhas sacolas: " + "\n" + "Id: " + usuario.getSacolas().get(0).getId() + "\n" + "Reutilizada " + usuario.getSacolas().get(0).getQntReutilizacao() + " vezes" + "\n" + "Id: " + usuario.getSacolas().get(1).getId() + "\n" + "Reutilizada " + usuario.getSacolas().get(1).getQntReutilizacao() + " vezes" + "\n" + "Total de reutilizações: " + usuario.getSacolas().get(0).totalReutilizacoes(usuario.getSacolas()));
         System.out.println("\n" + "Minhas medalhas: " + usuario.listarMedalhas(medalha.totalMedalhas(sacola.totalReutilizacoes(sacolas))));
