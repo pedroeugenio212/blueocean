@@ -30,8 +30,10 @@ public class Utilitario
     
     List<Sacola> sacolas = new ArrayList<>();
     List<Parceiro> parceiros = new ArrayList<>();
+    List<Parceiro> parceirosFavoritos = new ArrayList<>();
     List<NotaFiscal> notasFiscais = new ArrayList<>();
-    
+    List<NotaFiscal> notasFiscais2 = new ArrayList<>();
+
     public void Instanciar()
     {
         enderecoUsuario
@@ -62,9 +64,11 @@ public class Utilitario
             .setNumeroAgencia(2223)
             .setNumeroBanco(9876)
             .setNomeBanco("Banco do Brasil");
-        
-        sacolas.add(new Sacola().setId(123456).setQntReutilizacao(40));
-        sacolas.add(new Sacola().setId(654321).setQntReutilizacao(70));
+
+
+
+        sacolas.add(new Sacola().setId(123456).setQntReutilizacao(40).setNotaFiscal(notasFiscais));
+        sacolas.add(new Sacola().setId(654321).setQntReutilizacao(70).setNotaFiscal(notasFiscais2));
         
         parceiros.add(new Parceiro()
             .setCnpj("12345678901234")
@@ -78,7 +82,13 @@ public class Utilitario
             .setEmail("hiperideal@gmail.com")
             .setPorcentagemCashback(3)
             .setEndereco(enderecoParceiro2));
-        
+
+        parceirosFavoritos.add(new Parceiro() .setCnpj("12345678901234")
+                .setNome("Pão de Açucar")
+                .setEmail("paodeacucar@gmail.com")
+                .setPorcentagemCashback(2)
+                .setEndereco(enderecoParceiro1));
+
         usuario 
             .setCpf(1234567890)
             .setNome("Fernando")
@@ -87,7 +97,8 @@ public class Utilitario
             .setSenha("1234")
             .setConta(conta)
             .setSacolas(sacolas)
-            .setEndereco(enderecoUsuario);
+            .setEndereco(enderecoUsuario)
+                .setParceiros(parceirosFavoritos);
         
         notasFiscais.add(new NotaFiscal()
             .setId(142345)
@@ -113,6 +124,14 @@ public class Utilitario
             .setUsuario(usuario)
             .setParceiro(parceiros.get(0))
             .setTrasacaoCashback(transacaoCashback));
+        notasFiscais2.add(new NotaFiscal()
+                .setId(4536280)
+                .setValorCompra((float) 500.00)
+                .setData(LocalDate.of(2024, 6, 1))
+                .setSacola(sacolas.get(1))
+                .setUsuario(usuario)
+                .setParceiro(parceiros.get(1))
+                .setTrasacaoCashback(transacaoCashback));
         
         transacaoCashback
             .setId(1)
@@ -208,7 +227,12 @@ public class Utilitario
     public void Config() 
     {
         System.out.println("------------------------- Configurações -------------------------");
-        System.out.println("");
-    
+        System.out.println("Aqui você consegue ver todas as informačões relacionadas à sua conta:");
+        System.out.println("\n" + "Suas informações pessoais: " + "\n" + "Nome: " + usuario.getNome() + "\n" + "Endereco: " + usuario.getEndereco() + "\n" + "Email: " + usuario.getEmail() + "\n" + "Cpf: " + usuario.getCpf());
+        System.out.println("\n" + "Seus parceiros favoritos: " + "\n" + "Nome do parceiro: " + usuario.getParceiros().get(0).getNome() + "\n" + "Endereco do parceiro: " + usuario.getParceiros().get(0).getEndereco().getLogradouro()  + " Bairro: " + usuario.getParceiros().get(0).getEndereco().getBairro() + " Cidade: " + usuario.getParceiros().get(0).getEndereco().getCidade() + "\n"+ "Email do parceiro: " + usuario.getParceiros().get(0).getEmail());
+        System.out.println("\n" + "Meus recibos: " + "\n" + "Id da transação: " + transacaoCashback.getId() + "\n" + "Data efetuada: " + transacaoCashback.getData() + "\n" + "Total retirado : " + transacaoCashback.getValorTransacao() + "\n" + "Detalhes da conta bancária: " + "\n" + "Numero da conta: " + usuario.getConta().getNumeroConta() + "\n" + "Numero da agéncia: " + usuario.getConta().getNumeroAgencia() + "\n" + "Código do Banco: " + usuario.getConta().getNumeroBanco() + "\n" + "Nome do banco: " + usuario.getConta().getNomeBanco());
+        System.out.println("\n" + "Minhas sacolas: " + "\n" + "Id: " + usuario.getSacolas().get(0).getId() + "\n" + "Reutilizada " + usuario.getSacolas().get(0).getQntReutilizacao() + " vezes" + "\n" + "Id: " + usuario.getSacolas().get(1).getId() + "\n" + "Reutilizada " + usuario.getSacolas().get(1).getQntReutilizacao() + " vezes" + "\n" + "Total de reutilizações: " + usuario.getSacolas().get(0).totalReutilizacoes(usuario.getSacolas()));
+        System.out.println("\n" + "Minhas medalhas: " + usuario.listarMedalhas(medalha.totalMedalhas(sacola.totalReutilizacoes(sacolas))));
+        System.out.println("\n" + "Meus escaneamentos: " + usuario.getSacolas().get(0).getNotaFiscal() + usuario.getSacolas().get(1).getNotaFiscal());
     }
 }

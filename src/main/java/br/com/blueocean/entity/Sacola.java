@@ -46,11 +46,21 @@ public class Sacola
         return this;
     }
 
-    public List<NotaFiscal> getNotaFiscal()
+    public String getNotaFiscal()
     {
+        String todasAsNotasFiscais = "";
         if(notasFiscais == null)
             notasFiscais = new ArrayList<>();
-        return notasFiscais;
+
+        for (NotaFiscal notaFiscal : notasFiscais)
+        {
+            todasAsNotasFiscais += "\n" + "Id da nota fiscal: " + notaFiscal.getId();
+            todasAsNotasFiscais += "\n" +  "Sacola vinculada: " + getId();
+            todasAsNotasFiscais += "\n" +  "Data: " + notaFiscal.getData();
+            todasAsNotasFiscais += "\n" +  "Valor da compra: " + notaFiscal.getValorCompra();
+            todasAsNotasFiscais += "\n" +  "Cashback recebido: " + notaFiscal.cashbackCompra(notaFiscal) + "\n";
+        }
+        return todasAsNotasFiscais;
     }
 
     public Sacola setNotaFiscal(List<NotaFiscal> notasFiscais)

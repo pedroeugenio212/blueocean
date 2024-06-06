@@ -72,11 +72,11 @@ public class Usuario
         return this;
     }
 
-    public Endereco getEndereco()
+    public String getEndereco()
     {
         if (endereco == null)
 			endereco = new Endereco();
-        return endereco;
+        return endereco.getLogradouro() + " Bairro: " + endereco.getBairro() + " Cidade: " + endereco.getCidade();
     }
 
     public Usuario setEndereco(Endereco endereco)
@@ -99,7 +99,7 @@ public class Usuario
     }
 
     public List<Sacola> getSacolas()
-    {   
+    {
         if (sacolas == null)
 			sacolas = new ArrayList<>();
         return sacolas;
